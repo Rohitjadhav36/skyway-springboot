@@ -15,43 +15,41 @@ public class AirportServiceImpl implements AirportService {
     private AirportRepository airportRepository;
     @Override
     public AirportDTO addAirport(AirportDTO airportDTO) {
-        Airport airport = new Airport();
-        airport.setId(airportDTO.getId());
-        airport.setAirportName(airportDTO.getAirportName());
-        airport.setAirportCity(airportDTO.getAirportCity());
+
+        Airport airport = Airport.builder()
+                .id(airportDTO.getId())
+                .airportName(airportDTO.getAirportName())
+                .airportCity(airportDTO.getAirportCity())
+                .build();
 
         Airport savedAirport = airportRepository.save(airport);
 
-        AirportDTO responseDTO = new AirportDTO();
-        responseDTO.setId(savedAirport.getId());
-        responseDTO.setAirportName(savedAirport.getAirportName());
-        responseDTO.setAirportCity(savedAirport.getAirportCity());
-
-        return responseDTO;
+        return AirportDTO.builder()
+                .id(savedAirport.getId())
+                .airportName(savedAirport.getAirportName())
+                .airportCity(savedAirport.getAirportCity())
+                .build();
     }
-    public AirportDTO getAirportById(Integer id)
-    {
-        Airport airport=airportRepository.findById(id).get();
+    public AirportDTO getAirportById(Integer id) {
 
-        AirportDTO airportDTO=new AirportDTO();
-        airportDTO.setId(airport.getId());
-        airportDTO.setAirportName(airport.getAirportName());
-        airportDTO.setAirportCity(airport.getAirportCity());
+        Airport airport = airportRepository.findById(id).get();
 
-        return airportDTO;
+        return AirportDTO.builder()
+                .id(airport.getId())
+                .airportName(airport.getAirportName())
+                .airportCity(airport.getAirportCity())
+                .build();
     }
-    public List<AirportDTO> getAllAirports()
-    {
+    public List<AirportDTO> getAllAirports() {
+
         List<Airport> airports = airportRepository.findAll();
 
         return airports.stream()
-                .map(airport -> {
-                    AirportDTO dto = new AirportDTO();
-                    dto.setId(airport.getId());
-                    dto.setAirportName(airport.getAirportName());
-                    dto.setAirportCity(airport.getAirportCity());
-                    return dto;
-                })
+                .map(airport -> AirportDTO.builder()
+                        .id(airport.getId())
+                        .airportName(airport.getAirportName())
+                        .airportCity(airport.getAirportCity())
+                        .build())
                 .toList();
     }
 }
