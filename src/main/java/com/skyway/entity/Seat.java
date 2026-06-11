@@ -1,20 +1,31 @@
 package com.skyway.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.skyway.util.SeatClass;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Seat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String flight_id;
-    private String seat_no;
-    private String seat_class;
-    private String is_booked;
+
+    private String seatNo;
+
+    @Enumerated(EnumType.STRING)
+    private SeatClass seatClass;
+
+    private Boolean isBooked;
+
+    @ManyToOne
+    @JoinColumn(name = "flight_id")
+    private Flight flight;
 }

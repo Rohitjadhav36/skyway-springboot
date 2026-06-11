@@ -1,0 +1,403 @@
+h1{
+    color:#0d2a52;
+    font-weight:bold;
+}
+
+.card{
+    border-radius:15px;
+}
+
+body{
+    background:#041c42;
+}
+
+.flight-card{
+
+    background:#0b2755;
+
+    border:1px solid #1f3d6d;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    color:white;
+}
+
+.flight-id{
+
+    color:#ffb52e;
+
+    font-size:36px;
+
+    font-weight:bold;
+
+    min-width:150px;
+}
+
+.flight-info h4{
+
+    margin:0;
+
+    font-size:30px;
+
+    font-weight:600;
+}
+
+.flight-info p{
+
+    margin-top:10px;
+
+    color:#9ca3af;
+}
+.hero-content{
+    margin-left: 10px;
+    margin-top: 50px;
+    text-align: left;
+}
+
+.hero-title{
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 1;
+    color: #e7ebf5;   /* Light white */
+}
+
+.highlight{
+    color: #ffb52e;   /* Orange */
+}
+
+.hero-subtitle{
+    color: #9ba7c7;
+    font-size: 24px;
+}
+
+/*
+body{
+    background: #031b4e;
+}
+*/
+
+.custom-navbar{
+
+    background: #0a2558;
+
+    padding: 20px 30px;
+}
+
+.logo{
+
+    color: #ffb52e !important;
+
+    font-size: 2.3rem;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-decoration: none;
+}
+
+.nav-item-custom{
+
+    color: #8f99b6 !important;
+
+    font-size: 1.2rem;
+
+    font-weight: 600;
+}
+
+.active-nav{
+
+    background: #1a315f;
+
+    color: #ffb52e !important;
+
+    padding: 12px 20px;
+
+    border-radius: 12px;
+
+    font-size: 1.2rem;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.profile-btn{
+
+    background: transparent;
+
+    border: 1px solid #8f6a1f;
+
+    color: #ffb52e;
+
+    border-radius: 30px;
+
+    padding: 10px 20px;
+
+    font-size: 1.1rem;
+
+    font-weight: 600;
+}
+
+.profile-btn:hover{
+
+    background: #1a315f;
+}
+
+.booking-summary{
+
+    background:#0b2558;
+
+    border:1px solid #264878;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    color:white;
+
+    margin-top:30px;
+
+    width:80%;
+}
+
+.seat-arrangement{
+
+     background:#0b2558;
+
+        border:1px solid #264878;
+
+        border-radius:24px;
+
+        padding:30px;
+
+        color:white;
+
+        margin-top:30px;
+
+        width:80%;
+
+       margin:auto;
+
+}
+
+#seatContainer{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(6, 80px);
+
+    gap:20px;
+
+    justify-content:center;
+}
+
+.seat{
+
+    width:80px;
+
+    height:80px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:#28a745;
+
+    cursor:pointer;
+}
+
+.seat:hover{
+
+    transform:scale(1.05);
+}
+
+.selected-seat-card{
+
+    background:#173261;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    text-align:center;
+
+    color:white;
+
+    margin-top:40px;
+}
+
+.selected-seat-card h4{
+
+    color:#9db0d7;
+}
+
+.selected-seat-card h2{
+
+    color:#ffb52e;
+
+    font-size:40px;
+
+    margin-top:20px;
+}
+.summary-badge{
+
+    display:inline-block;
+
+    padding:10px 20px;
+
+    border:1px solid #8f6a1f;
+
+    border-radius:25px;
+
+    color:#ffb52e;
+
+    margin-bottom:30px;
+}
+
+.route-container{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:40px;
+}
+
+.city-block h1{
+
+    font-size:55px;
+
+    font-weight:700;
+}
+
+.airport-code{
+
+    color:#ffb52e;
+
+    font-size:28px;
+
+    font-weight:700;
+}
+
+.flight-center{
+
+    text-align:center;
+}
+
+.plane-icon{
+
+    color:#ffb52e;
+
+    font-size:30px;
+}
+
+.flight-duration{
+
+    color:#94a3c5;
+}
+
+.flight-details{
+
+    display:flex;
+
+    background:#173261;
+
+    border-radius:18px;
+
+    overflow:hidden;
+}
+
+.detail-item{
+
+    flex:1;
+
+    padding:20px;
+
+    border-right:1px solid #274674;
+}
+
+.detail-item:last-child{
+
+    border-right:none;
+}
+
+.detail-item h4{
+
+    font-size:20px;
+
+    margin-bottom:5px;
+}
+
+.detail-item span{
+
+    color:#94a3c5;
+}
+#seatContainer{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(6, 70px);
+
+    gap:15px;
+
+    margin-top:20px;
+}
+
+.seat{
+
+    width:60px;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.available{
+
+    background:#28a745;
+
+    color:white;
+}
+
+.booked{
+
+    background:#dc3545;
+
+    color:white;
+
+    cursor:not-allowed;
+}
+
+.selected{
+
+    background:#ffc107;
+
+    color:black;
+}
