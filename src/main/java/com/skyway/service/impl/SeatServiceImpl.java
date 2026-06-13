@@ -39,9 +39,26 @@ public class SeatServiceImpl implements SeatService {
       }
       return availableSeats;
     }
+
+    public List<SeatDTO> getSeatByFlightId(String flightId)
+    {
+        List<Seat> seats = seatRepository.findByFlightId(flightId);
+        List<SeatDTO> availableSeats = new ArrayList<>();
+        for(Seat seat: seats)
+        {
+            availableSeats.add(convertToDTO(seat));
+        }
+        return availableSeats;
+    }
+    public SeatDTO getSeatById(Integer id)
+    {
+        Seat seat = seatRepository.findById(id).get();
+        return convertToDTO(seat);
+    }
     private SeatDTO convertToDTO(Seat seat) {
 
         return SeatDTO.builder()
+                .id(seat.getId())
                 .seatNo(seat.getSeatNo())
                 .seatClass(seat.getSeatClass())
                 .isBooked(seat.getIsBooked())

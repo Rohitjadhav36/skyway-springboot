@@ -1,7 +1,7 @@
 
 let selectedSeatId = null;
 let flightId = null;
-
+let currentFlight = null;
 window.onload = function () {
 
     const params = new URLSearchParams(window.location.search);
@@ -20,7 +20,9 @@ async function loadFlightSummary() {
             `http://localhost:8080/flight/get-by/${flightId}`
         );
 
-        const flight = await response.json();
+       currentFlight = await response.json();
+
+       const flight = currentFlight;
 
         document.getElementById("flightNo").innerText =
             flight.id;
@@ -87,12 +89,27 @@ async function loadAvailableSeats() {
     try {
 
         const response = await fetch(
-            `http://localhost:8080/flight/available-seats/${flightId}`
+            `http://localhost:8080/flight/get-all-seat/${flightId}`
         );
 
         const seats = await response.json();
 
-        displaySeats(seats);
+const economySeats =
+    seats.filter(
+        seat => seat.seatClass === "ECONOMY"
+    );
+
+    const businessSeats =
+        seats.filter(
+            seat => seat.seatClass === "BUSINESS"
+        );
+
+const firstClassSeats =
+    seats.filter(
+        seat => seat.seatClass === "FIRST"
+    );
+
+        displaySeats(economySeats,businessSeats,firstClassSeats);
 
     } catch (error) {
 
@@ -102,23 +119,23 @@ async function loadAvailableSeats() {
     }
 }
 
-function displaySeats(seats) {
+function displaySeats(economySeats,businessSeats,firstClassSeats) {
 
-    const container =
+    const economyClassContainer =
         document.getElementById(
-            "seatContainer"
+            "economyClassSeatContainer"
         );
 
-    container.innerHTML = "";
+    economyClassContainer.innerHTML = "";
 
-    seats.forEach(seat => {
+    economySeats.forEach(seat => {
 
         let seatClass =
             seat.isBooked
             ? "booked"
             : "available";
 
-        container.innerHTML += `
+        economyClassContainer.innerHTML += `
 
             <button
                 class="seat ${seatClass}"
@@ -137,66 +154,196 @@ function displaySeats(seats) {
 
         `;
     });
+
+    const businessClassContainer =
+            document.getElementById(
+                "businessClassSeatContainer"
+            );
+
+        businessClassContainer.innerHTML = "";
+
+        businessSeats.forEach(seat => {
+
+            let seatClass =
+                seat.isBooked
+                ? "booked"
+                : "available";
+
+            businessClassContainer.innerHTML += `
+
+                <button
+                    class="seat ${seatClass}"
+                    ${seat.isBooked
+                        ? "disabled"
+                        : ""}
+                    onclick="selectSeat(
+                        ${seat.id},
+                        '${seat.seatNo}',
+                        this
+                    )">
+
+                    ${seat.seatNo}
+
+                </button>
+
+            `;
+        });
+
+      const firstClassContainer =
+              document.getElementById(
+                  "firstClassSeatContainer"
+              );
+
+          firstClassContainer.innerHTML = "";
+
+          firstClassSeats.forEach(seat => {
+              console.log(seat);
+              let seatClass =
+                  seat.isBooked
+                  ? "booked"
+                  : "available";
+
+              firstClassContainer.innerHTML += `
+
+                  <button
+
+                      class="seat ${seatClass}"
+                      ${seat.isBooked
+                          ? "disabled"
+                          : ""}
+                      onclick="selectSeat(
+                          ${seat.id},
+                          '${seat.seatNo}',
+                          this
+                      )">
+
+                      ${seat.seatNo}
+
+                  </button>
+
+              `;
+          });
+
+
 }
 
-function selectSeat(id, seatNo) {
+function selectSeat(id, seatNo, button) {
 
     selectedSeatId = id;
 
     document.getElementById(
         "selectedSeat"
     ).innerText = seatNo;
+
+    // Remove selected color from all seats
+
+    document
+        .querySelectorAll(".seat")
+        .forEach(seat => {
+            seat.classList.remove(
+                "selected"
+            );
+        });
+
+    // Add selected color to clicked seat
+
+    button.classList.add(
+        "selected"
+    );
 }
 
-async function confirmBooking() {
+async function fillBookingInfo() {
 
-    if (!selectedSeatId) {
+    if(selectedSeatId == null){
 
         alert("Please select a seat");
 
         return;
     }
 
-    const bookingRequest = {
-
-        flightId: flightId,
-
-        seatId: selectedSeatId
-    };
-
     try {
 
         const response = await fetch(
-
-            "http://localhost:8080/booking/create",
-
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body: JSON.stringify(
-                    bookingRequest
-                )
-            }
+            `http://localhost:8080/flight/get-seat-by/${selectedSeatId}`
         );
 
-        const result =
+        const selectedSeatInfo =
             await response.json();
 
-        alert(
-            "Booking Successful"
+        localStorage.setItem(
+            "flightId",
+            currentFlight.id
         );
+
+        localStorage.setItem(
+            "source",
+            currentFlight.source
+        );
+
+        localStorage.setItem(
+            "destination",
+            currentFlight.destination
+        );
+
+        localStorage.setItem(
+            "travelDate",
+            currentFlight.date
+        );
+
+        localStorage.setItem(
+            "departureTime",
+            currentFlight.departureTime
+        );
+
+        localStorage.setItem(
+            "arrivalTime",
+            currentFlight.arrivalTime
+        );
+
+        localStorage.setItem(
+            "seatId",
+            selectedSeatInfo.id
+        );
+
+        localStorage.setItem(
+            "seatNo",
+            selectedSeatInfo.seatNo
+        );
+
+        localStorage.setItem(
+            "seatClass",
+            selectedSeatInfo.seatClass
+        );
+
+        if(selectedSeatInfo.seatClass === "ECONOMY") {
+
+            localStorage.setItem(
+                "seatPrice",
+                currentFlight.economyClassPrice
+            );
+
+        } else if(selectedSeatInfo.seatClass === "BUSINESS") {
+
+            localStorage.setItem(
+                "seatPrice",
+                currentFlight.businessClassPrice
+            );
+
+        } else {
+
+            localStorage.setItem(
+                "seatPrice",
+                currentFlight.firstClassPrice
+            );
+        }
+
+        window.location.href =
+            "/confirm_booking.html";
 
     } catch (error) {
 
         console.error(error);
 
-        alert(
-            "Booking Failed"
-        );
+        alert("Unable to load booking page");
     }
 }

@@ -10,4 +10,6 @@ import java.util.List;
 public interface SeatRepository extends JpaRepository<Seat,Integer> {
 
     List<Seat> findByFlightIdAndIsBookedFalse(String flightId);
+
+    List<Seat> findByFlightId(String flightId);
 }

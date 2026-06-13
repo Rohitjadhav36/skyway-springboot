@@ -3,14 +3,21 @@ package com.skyway.dto;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDate;
 @Data
 @Builder
-public class UserDTO {
+public class PassengerDTO {
 
-    private String name;
+    private Integer id;
+
+    private String firstName;
+
+    private String lastName;
+
+    private Integer age;
+
     private String gender;
+
     private String email;
+
     private String mobileNo;
-    private LocalDate dob;
 }

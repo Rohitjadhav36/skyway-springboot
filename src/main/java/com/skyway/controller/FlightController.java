@@ -64,5 +64,14 @@ public class FlightController {
     {
       return ResponseEntity.ok(seatService.getAvailableSeats(flightId));
     }
-
+    @GetMapping("/get-seat-by/{id}")
+    public ResponseEntity<SeatDTO> getSeatById(@PathVariable Integer id)
+    {
+        return ResponseEntity.ok(seatService.getSeatById(id));
+    }
+    @GetMapping("/get-all-seat/{flightId}")
+    public ResponseEntity<List<SeatDTO>> getSeatById(@PathVariable String flightId)
+    {
+        return ResponseEntity.ok(seatService.getSeatByFlightId(flightId));
+    }
 }

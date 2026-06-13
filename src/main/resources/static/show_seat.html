@@ -165,10 +165,41 @@
 
         <!-- Seats -->
 
-        <div class="col-md-8">
-
-            <div id="seatContainer"></div>
-
+        <div class="col-md-8 manage-content">
+            <div class="row">
+                <span class="seat-selection" style="color:#C0C0C0;">
+                    <span style="color:#72ED34;background-color:#72ED34;border-radius:5px;">
+                        <i class="fa-thin fa-square"></i>
+                    </span>
+                     <span class="seatContent">
+                         Available
+                    </span>
+                   <span style="color:#FA1C3F;background-color:#FA1C3F;border-radius:5px;">
+                       <i class="fa-thin fa-square"></i>
+                   </span>
+                    <span class="seatContent">
+                        Occupied
+                    </span>
+                  <span style="color:#ffc107;background-color:#ffc107;border-radius:5px;">
+                      <i class="fa-thin fa-square"></i>
+                  </span>
+                        <span class="seatContent">
+                            Selected
+                        </span>
+                </span>
+            </div>
+            <div class="row">
+            <span class="seat-selection" style="color:#C0C0C0;">------------- ECONOMY CLASS --------------</span>
+            <div id="economyClassSeatContainer"></div>
+            </div>
+            <div class="row">
+            <span class="seat-selection" style="color:#C0C0C0;">------------- BUSINESS CLASS --------------</span>
+            <div id="businessClassSeatContainer"></div>
+            </div>
+            <div class="row">
+            <span class="seat-selection" style="color:#C0C0C0;">------------- FIRST CLASS --------------</span>
+            <div id="firstClassSeatContainer"></div>
+            </div>
         </div>
 
         <!-- Selected Seat -->
@@ -183,7 +214,7 @@
                     None
                 </h2>
 
-                <button
+                <button onclick="fillBookingInfo()"
                         class="btn btn-warning w-100 mt-3">
 
                     Next →

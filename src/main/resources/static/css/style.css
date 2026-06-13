@@ -323,7 +323,7 @@ body{
     background:#173261;
 
     border-radius:18px;
-
+    margin-top:20px;
     overflow:hidden;
 }
 
@@ -400,4 +400,107 @@ body{
     background:#ffc107;
 
     color:black;
+}
+#economyClassSeatContainer{
+
+    display:grid;
+
+    grid-template-columns: repeat(6, 80px);
+
+    gap:15px;
+
+    justify-content:center;
+}
+
+#businessClassSeatContainer{
+
+    display:grid;
+
+    grid-template-columns: repeat(6, 80px);
+
+    gap:15px;
+
+    justify-content:center;
+}
+
+#firstClassSeatContainer{
+
+    display:grid;
+
+    grid-template-columns: repeat(6, 80px);
+
+    gap:15px;
+
+    justify-content:center;
+}
+.manage-content{
+
+margin-top:40px;
+  background:#173261;
+    border-radius:18px;
+}
+.seat-selection{
+   margin-top:30px;
+   margin-bottom:30px;
+   text-align: center;
+}
+
+.seatContent{
+margin-left:10px;
+margin-right:12px;
+font-size:20px;
+}
+
+.selected{
+    background-color:#ffc107 !important;
+    color:black !important;
+}
+
+.booking-success{
+    background:#0b2558;
+
+    border:1px solid #264878;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    color:white;
+
+    margin-top:30px;
+
+    width:40%;
+
+    height: 600px;
+}
+
+.booking-details{
+
+    display:flex;
+    margin-top:20px;
+    overflow:hidden;
+}
+
+.booking-item{
+
+    flex:1;
+    padding:20px;
+
+}
+
+.booking-item:last-child{
+
+    border-right:none;
+}
+
+.booking-item h4{
+
+    font-size:20px;
+
+    margin-bottom:5px;
+}
+
+.booking-item span{
+
+    color:#94a3c5;
 }

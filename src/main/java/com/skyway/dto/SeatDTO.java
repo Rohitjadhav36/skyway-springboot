@@ -9,6 +9,7 @@ import lombok.Data;
 @Builder
 public class SeatDTO {
 
+    private Integer id;
     private String flightId;
     private String seatNo;
     @Enumerated(EnumType.STRING)
